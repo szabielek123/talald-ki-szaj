@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Találd ki szám!</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Találd ki szám!</h1>
+
+    <p>Guess a number (1–10)</p>
+
+    <input id="guessInput" type="number" />
+
+    <br>
+
+    <button onclick="checkGuess()">Ez az!</button>
+    <button onclick="newGame()">Új játék</button>
+
+    <p id="result"></p>
+
+    <script>
+        let secretNumber = Math.floor(Math.random() * 10) + 1;
+
+        function checkGuess() {
+            let guess = Number(document.getElementById("guessInput").value);
+            let result = document.getElementById("result");
+
+            if (!guess) {
+                result.textContent = "Írj be egy számot!";
+                return;
+            }
+
+            if (guess === secretNumber) {
+                result.textContent = "🎉 Ez az!";
+            } else if (guess < secretNumber) {
+                result.textContent = "Túl kicsi ⬇️";
+            } else {
+                result.textContent = "Túl nagy ⬆️";
+            }
+        }
+
+        function newGame() {
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+            document.getElementById("result").textContent = "Új játék kezdődött!";
+            document.getElementById("guessInput").value = "";
+        }
+    </script>
+
+</body>
+</html>
